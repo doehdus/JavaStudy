@@ -23,9 +23,9 @@ package classwork.day2;
     }
 }*/
 
-public class day2 {
+/*public class day2 {
     public static void main(String[] args) {
         InitializeTest s = new InitializeTest();
         s.printString();
     }
-}
+}*/
