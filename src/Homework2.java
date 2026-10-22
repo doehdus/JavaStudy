@@ -1,79 +1,94 @@
 import java.util.Scanner;
 
-class Student{
+class Student {
     private int studentId;
     private String name;
     private String major;
-    private int number;
+    private int phoneNumber;
 
-    void setStudentId(int studentId){
+    // Student ID
+    public void setStudentId(int studentId) {
         this.studentId = studentId;
     }
-    int getStudentId(){
+
+    public int getStudentId() {
         return studentId;
     }
 
-    void setName(String name){
+    // Name
+    public void setName(String name) {
         this.name = name;
     }
-    String getName(){
+
+    public String getName() {
         return name;
     }
 
-    void setMajor(String major){
+    // Major
+    public void setMajor(String major) {
         this.major = major;
     }
-    String getMajor(){
+
+    public String getMajor() {
         return major;
     }
 
-    void setNumber(int number){
-        this.number = number;
+    // Phone number
+    public void setPhoneNumber(int phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
-    int getNumber(){
-        return number;
+
+    public int getPhoneNumber() {
+        return phoneNumber;
     }
 }
 
-class Homework2{
-    public static void main(String[] args){
+public class Homework2 {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
         Student[] students = new Student[3];
 
-        for(int i = 0; i < students.length; i++){
-            System.out.print("학생의 학번, 이름 전공, 전화번호를 입력하세요: ");
-
+        // Input student information
+        for (int i = 0; i < 3; i++) {
+            students[i] = new Student();
+            System.out.print("학생의 학번, 이름 ");
             int studentId = sc.nextInt();
             String name = sc.next();
             String major = sc.next();
-            int number = sc.nextInt();
+            String phone = sc.next();
 
-            students[i] = new Student();
+            // Convert String to int
+            int phoneNumber = Integer.parseInt(phone);
 
+            // Save student information
             students[i].setStudentId(studentId);
             students[i].setName(name);
             students[i].setMajor(major);
-            students[i].setNumber(number);
-        }
-        System.out.println("\n입력된 학생의 정보는 다음과 같습니다.");
-
-        for(int i = 0; i<students.length; i++){
-            Student s = students[i];
-
-            String phone = "0" + s.getNumber();
-            char[] phoneArray = phone.toCharArray();
-
-            String formattedNum =
-                    new String(phoneArray, 0, 3) + "-" +
-                            new String(phoneArray, 3, 4) + "-" +
-                            new String(phoneArray, 7, 4);
-
-
-            System.out.print((i+1) + "번째 학생: ");
-            System.out.println(s.getStudentId() + " " + s.getName() + " " + s.getMajor() + " "+ formattedNum);
+            students[i].setPhoneNumber(phoneNumber);
         }
 
+        // Print student information
+        for (int i = 0; i < 3; i++) {
 
+            // Convert int to String
+            String phone = Integer.toString(
+                    students[i].getPhoneNumber());
+
+            // Restore zero and insert hyphens
+            String formattedPhone = "0" +
+                    phone.substring(0, 2) + "-" +
+                    phone.substring(2, 6) + "-" +
+                    phone.substring(6);
+
+            System.out.println(
+                    students[i].getStudentId() + " " +
+                            students[i].getName() + " " +
+                            students[i].getMajor() + " " +
+                            formattedPhone
+            );
+        }
+
+        sc.close();
     }
 }
